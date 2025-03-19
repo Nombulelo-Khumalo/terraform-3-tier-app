@@ -23,3 +23,15 @@ variable "db_password" {
   type        = string
 }
 
+variable "db_instance_class" {
+  description = "RDS instance class"
+  type        = string
+  default     = "db.t3.micro"
+}
+
+variable "db_name" {
+  description = "Database name"
+  type        = string
+  default     = "myappdb"
+}
+
