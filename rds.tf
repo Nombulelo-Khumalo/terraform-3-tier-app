@@ -1,11 +1,4 @@
-resource "aws_db_subnet_group" "db_subnet_group" {
-  name       = "db-subnet-group"
-  subnet_ids = [aws_subnet.private.id]
 
-  tags = {
-    Name = "db-subnet-group"
-  }
-}
 
 resource "aws_db_instance" "postgres" {
   identifier              = "terraform-postgres-db"
