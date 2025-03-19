@@ -1,20 +1,23 @@
 resource "aws_launch_template" "app" {
   name_prefix   = "app-launch-template-"
-  image_id      = "ami-830c94e3"  # Replace with a valid Ubuntu AMI for us-east-1
+  image_id      = "ami-0f9de6e2d2f067fca" 
   instance_type = var.instance_type
 
   network_interfaces {
     associate_public_ip_address = false
-    subnet_id                  = aws_subnet.private.id
+    subnet_id                  = aws_subnet.private[0].id
     security_groups            = [aws_security_group.ec2_sg.id]
   }
 
-  user_data = <<-EOF
+  user_data = base64encode(<<-EOF
               #!/bin/bash
               sudo apt update -y
               sudo apt install -y nginx
               sudo systemctl start nginx
               EOF
+            )
+
+
 
   tag_specifications {
     resource_type = "instance"
