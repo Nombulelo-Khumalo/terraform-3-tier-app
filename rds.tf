@@ -27,3 +27,12 @@ resource "aws_db_instance" "postgres" {
   }
 }
 
+resource "aws_db_subnet_group" "db_subnet_group" {
+  name       = "db-subnet-group"
+  subnet_ids = aws_subnet.private[*].id  # Use both private subnets
+
+  tags = {
+    Name = "db-subnet-group"
+  }
+}
+
