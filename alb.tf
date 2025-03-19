@@ -43,9 +43,4 @@ resource "aws_lb_listener" "app_listener" {
   }
 }
 
-resource "aws_lb_target_group_attachment" "app_tg_attachment" {
-  count            = length(aws_autoscaling_group.app_asg.instances)
-  target_group_arn = aws_lb_target_group.app_tg.arn
-  target_id        = aws_autoscaling_group.app_asg.instances[count.index]
-  port             = 80
-}
+
